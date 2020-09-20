@@ -1,6 +1,6 @@
 pipeline {
   environment {
-    registry = "aletikk/devops-certification"
+    registry = "akumarvmware/devops-certification"
     registryCredential = 'Welcome@123'
   }
   agent any
@@ -33,7 +33,7 @@ pipeline {
 
 node {
     stage('Execute Image'){
-        def customImage = docker.build("aletikk/devops-certification:${env.BUILD_NUMBER}")
+        def customImage = docker.build("akumarvmware/devops-certification:${env.BUILD_NUMBER}")
         customImage.inside {
             sh 'echo This code would be executing inside the container.'
         }
