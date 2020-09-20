@@ -29,3 +29,12 @@ pipeline {
         }
    }   
 }
+
+node {
+    stage('Execute Image'){
+        def customImage = docker.build("aletikk/sl-devops-certification:${env.BUILD_NUMBER}")
+        customImage.inside {
+            sh 'echo Hello'
+        }
+    }
+}
