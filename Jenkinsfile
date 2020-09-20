@@ -1,7 +1,7 @@
 pipeline {
   environment {
     registry = "akumarvmware/devops-certification"
-    registryCredential = 'Welcome@123'
+    registryCredential = 'dockerhub'
   }
   agent any
   stages {
