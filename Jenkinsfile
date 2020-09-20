@@ -2,6 +2,7 @@ pipeline {
   environment {
     registry = "aletikk/sl-devops-certification"
     registryCredential = 'dockerhub'
+    dockerImage = ''
   }
   agent any
   stages {
@@ -12,7 +13,6 @@ pipeline {
             }
         }
         }
-
         stage('Deploy Image') {
         steps{
             script {
@@ -22,20 +22,10 @@ pipeline {
             }
         }
         }
-
         stage('Remove Image') {
         steps{
             sh "docker rmi $registry:$BUILD_NUMBER"
         }
         }
    }   
-}
-
-node {
-    stage('Execute Image'){
-        def customImage = docker.build("aletikk/sl-devops-certification:${env.BUILD_NUMBER}")
-        customImage.inside {
-            sh 'echo This code would be executing inside the container.'
-        }
-    }
 }
